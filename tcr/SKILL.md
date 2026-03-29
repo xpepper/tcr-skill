@@ -1,5 +1,5 @@
 ---
-name: tcrdd
+name: tcr
 description: >
   Guide users through TCR (Test && Commit || Revert), TCRDD, and git-gamble workflows.
   ALWAYS trigger when a user mentions TCR, TCRDD, "test commit revert", "git gamble",
