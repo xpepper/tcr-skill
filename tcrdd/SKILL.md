@@ -9,6 +9,8 @@ description: >
   smallest steps", or "gamble" on their tests.
   Do NOT trigger for general TDD-only questions, general unit testing questions, test
   framework setup, CI pipelines, mocking, or code coverage — those do not need this skill.
+license: MIT
+compatibility: Requires git and git-gamble (https://git-gamble.is-cool.dev/)
 ---
 
 # TCRDD — TCR + TDD
@@ -205,7 +207,7 @@ REFACTOR → clean code → git gamble --refactor -- <test command>
            fail? revert → try again
 ```
 
-## Guidance For Codex
+## Guidance For AI Agents
 
 When Codex is executing TCRDD for the user:
 
