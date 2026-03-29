@@ -1,4 +1,4 @@
-# tcr
+# A TCR (Test && Commit || Revert) Agent Skill
 
 An [Agent Skill](https://agentskills.io/specification) that guides users through **TCR/TCRDD** (TCR + TDD) using [`git-gamble`](https://git-gamble.is-cool.dev/).
 
