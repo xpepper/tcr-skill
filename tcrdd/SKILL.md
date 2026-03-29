@@ -209,7 +209,7 @@ REFACTOR → clean code → git gamble --refactor -- <test command>
 
 ## Guidance For AI Agents
 
-When Codex is executing TCRDD for the user:
+When an AI agent is executing TCRDD for the user:
 
 - Never run the plain test command before `git gamble` within a Red/Green/Refactor cycle
 - Make the edit first, then run `git gamble --<phase> -- <test command>`
