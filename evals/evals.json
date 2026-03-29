@@ -1,0 +1,42 @@
+{
+  "skill_name": "tcrdd",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm building a FizzBuzz function in TypeScript and want to practice TCRDD with git-gamble. My test runner is `npm test`. Walk me through the first complete Red-Green-Refactor cycle step by step.",
+      "expected_output": "A step-by-step guide that: (1) tells the user to write ONE failing test for the simplest FizzBuzz behaviour (e.g. returns '1' for input 1), (2) says to run `git gamble --red -- npm test` as the FIRST test execution (no pre-running npm test), (3) explains the gamble logic (pass→revert, fail→commit), (4) for Green tells the user to write minimum code then `git gamble --green -- npm test`, (5) for Refactor tells the user to clean up then `git gamble --refactor -- npm test`. Should not suggest running npm test before git gamble.",
+      "files": [],
+      "expectations": [
+        "Correctly explains Red phase: write one test, then run `git gamble --red -- npm test` (no standalone npm test first)",
+        "Correctly explains Green phase: write minimum code, then run `git gamble --green -- npm test`",
+        "Correctly explains Refactor phase: restructure only, then run `git gamble --refactor -- npm test`",
+        "Explains that in Red, passing tests means revert (the test wasn't really failing / new coverage)",
+        "Does NOT suggest running npm test before git gamble within any phase"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm doing TCRDD on a Rust project. I just wrote a test for my calculator's `add` function. Before running git gamble I wanted to make sure the test actually fails, so I ran `cargo test` first — yep, it failed as expected. Then I ran `git gamble --red -- cargo test`. Did I follow strict TCRDD correctly?",
+      "expected_output": "The skill should clearly identify this as a violation of strict TCR. Running `cargo test` before `git gamble --red` destroys the gamble — you already know the outcome. The correct approach is to write the test and then immediately run `git gamble --red -- cargo test` without any pre-check. The skill should explain WHY this matters (if you already know the result, there is no gamble) and give the correct sequence for the next cycle.",
+      "files": [],
+      "expectations": [
+        "Identifies the mistake: running `cargo test` before `git gamble --red` is not strict TCRDD",
+        "Explains why: once you know the result there is no gamble, which defeats the TCR discipline",
+        "Provides the correct sequence: write test → immediately run `git gamble --red -- cargo test` without pre-checking",
+        "Tone is coaching, not harsh — acknowledges the instinct to verify but explains why it undermines TCR"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Can you review this Stack implementation and tests for TDD compliance?\n\n```typescript\n// stack.ts\nexport class Stack<T> {\n  private items: T[] = [];\n\n  push(item: T): void {\n    this.items.push(item);\n  }\n\n  pop(): T | undefined {\n    return this.items.pop();\n  }\n\n  peek(): T | undefined {\n    return this.items[this.items.length - 1];\n  }\n\n  isEmpty(): boolean {\n    return this.items.length === 0;\n  }\n\n  size(): number {\n    return this.items.length;\n  }\n\n  clear(): void {\n    this.items = [];\n  }\n}\n\n// stack.test.ts\ndescribe('Stack', () => {\n  it('pushes and pops items', () => {\n    const s = new Stack<number>();\n    s.push(1);\n    s.push(2);\n    expect(s.pop()).toBe(2);\n    expect(s.pop()).toBe(1);\n  });\n\n  it('returns undefined when popping empty stack', () => {\n    const s = new Stack<number>();\n    expect(s.pop()).toBeUndefined();\n  });\n\n  it('checks isEmpty', () => {\n    const s = new Stack<number>();\n    expect(s.isEmpty()).toBe(true);\n    s.push(42);\n    expect(s.isEmpty()).toBe(false);\n  });\n});\n```",
+      "expected_output": "The skill should identify TDD compliance issues including: (1) `peek()`, `size()`, and `clear()` have zero test coverage — production code exists with no corresponding failing test, violating Rule 1; (2) the 'pushes and pops items' test tests two behaviours at once (multiple pushes + order) rather than one behaviour per test; (3) the implementation may be over-engineered relative to what the tests require. Should use the TDD checklist from the skill.",
+      "files": [],
+      "expectations": [
+        "Identifies that `peek()`, `size()`, and `clear()` have no tests (production code without failing tests first — Rule 1 violation)",
+        "Notes that `pushes and pops items` tests multiple behaviours — a TDD smell since tests should focus on one behaviour",
+        "Uses or references the TDD compliance checklist from the skill",
+        "Points out that production code could be deleted without any test failing (peek, size, clear)"
+      ]
+    }
+  ]
+}
