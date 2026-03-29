@@ -1,0 +1,82 @@
+[
+  {
+    "query": "I want to develop this change with TDD and TCR, so that we are forced to make the smallest possible meaningful progress forward",
+    "should_trigger": true
+  },
+  {
+    "query": "we use git-gamble at work and i just ran `cargo test` before `git gamble --red`. my colleague says that's wrong but i don't get why — the test was failing anyway",
+    "should_trigger": true
+  },
+  {
+    "query": "I want to use TCR to force us to develop the change making the smallest steps that still move us forward",
+    "should_trigger": true
+  },
+  {
+    "query": "i want to try TCR (test commit revert) on my next feature. never done it before. where do I start?",
+    "should_trigger": true
+  },
+  {
+    "query": "my Stack class has peek(), size(), and clear() methods but my tests only cover push and pop. is that a tdd problem?",
+    "should_trigger": false
+  },
+  {
+    "query": "what are uncle bob's three rules of tdd? i keep forgetting the exact wording",
+    "should_trigger": false
+  },
+  {
+    "query": "trying TCRDD with git-gamble for the first time on a typescript/jest project. what flags do i pass to git gamble for each phase?",
+    "should_trigger": true
+  },
+  {
+    "query": "i wrote the test, it's failing, now what? (practicing tdd on a react component for the first time)",
+    "should_trigger": false
+  },
+  {
+    "query": "is it ok to write a few tests upfront before starting implementation in TDD or do i really have to go one test at a time?",
+    "should_trigger": false
+  },
+  {
+    "query": "my team wants to implement this new checkout feature. should we write all the tests first and then implement, or is there a better approach?",
+    "should_trigger": false
+  },
+  {
+    "query": "how do i set up jest to run tests in watch mode for my node.js project?",
+    "should_trigger": false
+  },
+  {
+    "query": "my github actions ci pipeline is failing on the test step — it was working yesterday. any idea how to debug it?",
+    "should_trigger": false
+  },
+  {
+    "query": "what's the difference between unit tests, integration tests, and end-to-end tests? trying to explain this to my junior dev",
+    "should_trigger": false
+  },
+  {
+    "query": "can you write a test for this parseCSV function? i want to make sure it handles empty lines correctly",
+    "should_trigger": false
+  },
+  {
+    "query": "how do i mock axios calls in jest? i have an api service class and i can't figure out the right way to stub the responses",
+    "should_trigger": false
+  },
+  {
+    "query": "my playwright e2e tests keep flaking in CI, especially the ones that click buttons. any tips for stabilizing them?",
+    "should_trigger": false
+  },
+  {
+    "query": "should i use vitest or jest for a new vite + react project? looking for pros and cons",
+    "should_trigger": false
+  },
+  {
+    "query": "i need to add code coverage reporting to my python project — what tools should i use and how do i set a minimum threshold in ci?",
+    "should_trigger": false
+  },
+  {
+    "query": "we have a legacy codebase with zero tests. how do i safely add tests retroactively without breaking anything?",
+    "should_trigger": false
+  },
+  {
+    "query": "i'm doing a code review on this PR — the tests pass but i feel like there aren't enough of them. what should i look for?",
+    "should_trigger": false
+  }
+]
