@@ -30,14 +30,12 @@ The agent makes tiny changes, runs the full test suite, commits on green, revert
 
 ## Installation
 
-Copy the skill directory into wherever your agent runtime loads skills from:
-
 ```bash
 # Install tcr-kentbeck
-cp -r tcr-kentbeck ~/.agents/skills/tcr-kentbeck
+npx skills install xpepper/tcr-skill --skill tcr-kentbeck
 
 # Install tcr
-cp -r tcr ~/.agents/skills/tcr
+npx skills install xpepper/tcr-skill --skill tcr
 ```
 
 Alternatively, use the pre-packaged `.skill` files:
