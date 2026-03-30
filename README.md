@@ -1,46 +1,64 @@
-# A TCR (Test && Commit || Revert) Agent Skill
+# TCR Agent Skills
 
-An [Agent Skill](https://agentskills.io/specification) that guides users through **TCR/TCRDD** (TCR + TDD) using [`git-gamble`](https://git-gamble.is-cool.dev/).
+A collection of [Agent Skills](https://agentskills.io/specification) for **TCR (Test && Commit || Revert)** workflows.
 
-## What it does
+---
 
-Coaches users through the TCR (Test && Commit || Revert) workflow layered on top of TDD:
+## Skills
 
-- Explains the three TCR/TCRDD phases (Red / Green / Refactor) and their `git gamble` flags
-- Enforces the strict TCR rule: `git gamble` is the test run — no pre-running tests
-- Coaches when a surprise result (unexpected pass or fail) happens and why
-- Guards against common mistakes (pre-checking tests, leaving dirty worktrees, writing all tests upfront)
+### `tcr` — TCR/TCRDD with git-gamble
 
-## When it triggers
+Coaches users through **TCRDD** (TCR + TDD) using [`git-gamble`](https://git-gamble.is-cool.dev/).
 
-Triggers on: `TCR`, `TCRDD`, `test commit revert`, `git gamble`, `git-gamble`, or phrases like "develop with TDD and TCR" / "use TCR to force smallest steps".
+- Explains the three phases (Red / Green / Refactor) and their `git gamble` flags
+- Enforces strict TCR discipline: `git gamble` is the test run — no pre-running tests
+- Coaches on surprise results and common mistakes
 
-**Does not** trigger for general TDD-only questions, unit testing setup, CI pipelines, or mocking — those don't need this skill.
+**Requirements:** `git`, [`git-gamble`](https://git-gamble.is-cool.dev/)
 
-## Requirements
+### `tcr-kentbeck` — Kent Beck's TCR
 
-- `git`
-- [`git-gamble`](https://git-gamble.is-cool.dev/)
+A faithful adaptation of [Kent Beck's own TCR skill](https://github.com/KentBeck/TCRSkill/), originally written for Cursor, made agent-agnostic per the [Agent Skills specification](https://agentskills.io/specification).
+
+The agent makes tiny changes, runs the full test suite, commits on green, reverts on red — and logs every failure to `tcr-failure-log.md`. No tool dependencies beyond `git`; the agent detects and uses the project's existing test command.
+
+**Requirements:** `git`
+
+**Inspired by:** [KentBeck/TCRSkill](https://github.com/KentBeck/TCRSkill/)
+
+---
 
 ## Installation
 
-Copy the `tcr/` directory into wherever your agent runtime loads skills from, e.g.:
+Copy the skill directory into wherever your agent runtime loads skills from:
 
 ```bash
+# Install tcr-kentbeck
+cp -r tcr-kentbeck ~/.agents/skills/tcr-kentbeck
+
+# Install tcr
 cp -r tcr ~/.agents/skills/tcr
 ```
 
-Refer to your agent's documentation for the exact skills directory and any symlinking needed.
+Alternatively, use the pre-packaged `.skill` files:
+
+```bash
+# Available at repo root: tcr.skill, tcr-kentbeck.skill
+```
+
+Refer to your agent's documentation for the exact skills directory.
+
+---
 
 ## Evals
 
-The `evals/` directory contains test cases used to validate the skill:
+The `evals/` directory contains test prompts used to validate the skills.
 
-- `evals.json` — 3 functional test prompts (FizzBuzz TCR/TCRDD walkthrough, TCR mistake detection, TDD compliance review)
-- `trigger_eval.json` — 20 trigger/no-trigger queries for description optimization
+---
 
 ## Resources
 
-- [git-gamble](https://git-gamble.is-cool.dev/) — the tool that implements TCR
 - [TCR original post by Kent Beck](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864)
+- [KentBeck/TCRSkill](https://github.com/KentBeck/TCRSkill/) — Kent Beck's original Cursor skill
+- [git-gamble](https://git-gamble.is-cool.dev/) — the tool that powers the `tcr` skill
 - [Agent Skills specification](https://agentskills.io/specification)

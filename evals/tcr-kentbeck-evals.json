@@ -1,0 +1,46 @@
+{
+  "skill_name": "tcr-kentbeck",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a Python project with pytest. I want to start working with TCR — Kent Beck style. The project is a simple calculator (calculator.py with add/subtract functions, and test_calculator.py with basic tests). Help me add a multiply function using TCR discipline.",
+      "expected_output": "Agent detects pytest as the test command, makes a tiny change (e.g., writes one failing test for multiply), runs the full test suite, commits or reverts based on result, and logs failures to tcr-failure-log.md.",
+      "files": [],
+      "assertions": [
+        {"id": "detects-pytest", "text": "Agent identifies pytest as the test command"},
+        {"id": "minimal-change", "text": "Each edit is a single logical change (one test or one implementation)"},
+        {"id": "runs-full-suite", "text": "Agent runs the complete test suite, not a filtered subset"},
+        {"id": "commits-on-green", "text": "Agent commits immediately when tests pass"},
+        {"id": "reverts-on-red", "text": "Agent reverts all uncommitted changes when tests fail"},
+        {"id": "logs-failure", "text": "Agent writes a structured entry to tcr-failure-log.md after a revert"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I want to add input validation to my Node.js Express API using Kent Beck's TCR. The project has npm test configured with Jest. Specifically, I want to validate that the 'email' field in POST /users is a valid email address. Use TCR discipline — tiny steps, commit on green, revert on red.",
+      "expected_output": "Agent detects 'npm test' from package.json, works in micro-steps (one test then one implementation per cycle), commits after each green, reverts and logs on red, never accumulates broken code.",
+      "files": [],
+      "assertions": [
+        {"id": "detects-npm-test", "text": "Agent identifies npm test from package.json as the test command"},
+        {"id": "micro-steps", "text": "Works in multiple small cycles, not one big implementation"},
+        {"id": "commit-per-cycle", "text": "Each passing cycle produces a separate commit"},
+        {"id": "revert-mechanics", "text": "Uses git checkout/clean on failure, not manual undo"},
+        {"id": "failure-log-entry", "text": "Writes structured entry to tcr-failure-log.md on revert"},
+        {"id": "no-pre-checking", "text": "Does not run tests before making the change to see where things stand"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I just got reverted while practicing TCR. My tcr-failure-log.md shows I tried to refactor the authentication module by extracting a helper function, but tests broke because I missed updating 3 call sites. Help me recover and try again with TCR discipline.",
+      "expected_output": "Agent reads the failure log, understands what went wrong, proposes a smaller approach (e.g., update one call site at a time), and resumes the TCR cycle — making a minimal change, testing, committing or reverting.",
+      "files": [],
+      "assertions": [
+        {"id": "reads-failure-log", "text": "Agent reads tcr-failure-log.md to understand what happened"},
+        {"id": "smaller-approach", "text": "Proposes a smaller step than the one that failed"},
+        {"id": "resumes-tcr-cycle", "text": "Continues working in the TCR discipline (change then test then commit/revert)"},
+        {"id": "one-callsite-at-a-time", "text": "Breaks the 3-callsite refactor into individual steps"},
+        {"id": "logs-if-reverted-again", "text": "Would log again to tcr-failure-log.md if another revert happens"}
+      ]
+    }
+  ]
+}
